@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight, LogOut, Bell, User, HelpCircle, Settings } from 'lucide-react';
+import { ChevronLeft, ChevronRight, LogOut, Bell, User, HelpCircle, Settings, Mic } from 'lucide-react';
 import Airuter from './airuter_logo.png';
 import SidebarMenu from './SidebarMenu';
 import JobsContent from './JobsContent';
@@ -13,6 +13,7 @@ import ChatContent from './ChatContent';
 import ProfileContent from './ProfileContent';
 import SettingsContent from './SettingsContent';
 import HelpContent from './HelpContent';
+import VoiceInteraction from './VoiceInteraction';
 
 const SidebarLayout = () => {
   const [isExpanded, setIsExpanded] = useState(true);
@@ -74,60 +75,69 @@ const SidebarLayout = () => {
 
       {/* Main content */}
       <div className="flex-1 flex flex-col">
-        {/* Navbar */}
-        <div className="bg-white shadow-md py-4 px-6 flex items-center justify-between">
-          <div className="flex items-center">
-            {currentPath !== '/dashboard' && currentPath !== '/jobs' && (
-              <div className="mr-4 cursor-pointer hover:bg-gray-50 transition-colors duration-200 p-2 rounded-full">
-                <span className="text-gray-600 font-semibold">
-                  {currentPath.slice(1).split('-').map(word => 
-                    word.charAt(0).toUpperCase() + word.slice(1)
-                  ).join(' ')}
-                </span>
-              </div>
-            )}
-          </div>
-          <div className="flex items-center">
-            <div 
-              onClick={() => handleNavigate('/profile')}
-              className="mr-4 cursor-pointer hover:bg-gray-50 transition-colors duration-200 p-2 rounded-full"
-            >
-              <User size={20} />
-            </div>
-            <div 
-              onClick={() => handleNavigate('/help')}
-              className="mr-4 cursor-pointer hover:bg-gray-50 transition-colors duration-200 p-2 rounded-full"
-            >
-              <HelpCircle size={20} />
-            </div>
-            <div 
-              onClick={() => handleNavigate('/settings')}
-              className="mr-4 cursor-pointer hover:bg-gray-50 transition-colors duration-200 p-2 rounded-full"
-            >
-              <Settings size={20} />
-            </div>
-            <div 
-              onClick={() => handleNavigate('/notifications')}
-              className="cursor-pointer hover:bg-gray-50 transition-colors duration-200 p-2 rounded-full"
-            >
-              <Bell size={20} />
-            </div>
-          </div>
-        </div>
 
-        <div className="flex-1 overflow-auto p-8">
-          {currentPath === '/dashboard' && <DashboardContent />}
-          {currentPath === '/chat' && <ChatContent />}
-          {currentPath === '/jobs' && <JobsContent />}
-          {currentPath === '/ai-telephonic' && <AiTelephonic />}
-          {currentPath === '/ai-video' && <AiVideo />}
-          {currentPath === '/expert-video' && <ExpertVideo />}
-          {currentPath === '/courses' && <CoursesContent />}
-          {currentPath === '/notifications' && <NotificationsContent />}
-          {currentPath === '/profile' && <ProfileContent />}
-          {currentPath === '/settings' && <SettingsContent />}
-          {currentPath === '/help' && <HelpContent />}
-        </div>
+{/* Navbar */}
+<div className="bg-white shadow-md py-4 px-6 flex items-center justify-between">
+  <div className="flex items-center">
+    {currentPath !== '/dashboard' && currentPath !== '/jobs' && (
+      <div className="mr-4 cursor-pointer hover:bg-gray-50 transition-colors duration-200 p-2 rounded-full">
+        <span className="text-gray-600 font-semibold">
+          {currentPath.slice(1).split('-').map(word => 
+            word.charAt(0).toUpperCase() + word.slice(1)
+          ).join(' ')}
+        </span>
+      </div>
+    )}
+  </div>
+  <div className="flex items-center">
+    <div 
+      onClick={() => handleNavigate('/voice-assistant')}
+      className="mr-4 cursor-pointer hover:bg-gray-50 transition-colors duration-200 p-2 rounded-full"
+    >
+      <Mic size={20} />
+    </div>
+    <div 
+      onClick={() => handleNavigate('/profile')}
+      className="mr-4 cursor-pointer hover:bg-gray-50 transition-colors duration-200 p-2 rounded-full"
+    >
+      <User size={20} />
+    </div>
+    <div 
+      onClick={() => handleNavigate('/help')}
+      className="mr-4 cursor-pointer hover:bg-gray-50 transition-colors duration-200 p-2 rounded-full"
+    >
+      <HelpCircle size={20} />
+    </div>
+    <div 
+      onClick={() => handleNavigate('/settings')}
+      className="mr-4 cursor-pointer hover:bg-gray-50 transition-colors duration-200 p-2 rounded-full"
+    >
+      <Settings size={20} />
+    </div>
+    <div 
+      onClick={() => handleNavigate('/notifications')}
+      className="cursor-pointer hover:bg-gray-50 transition-colors duration-200 p-2 rounded-full"
+    >
+      <Bell size={20} />
+    </div>
+  </div>
+</div>
+
+{/* Update the content section to include the new VoiceInteraction component */}
+<div className="flex-1 overflow-auto p-8">
+  {currentPath === '/dashboard' && <DashboardContent />}
+  {currentPath === '/chat' && <ChatContent />}
+  {currentPath === '/jobs' && <JobsContent />}
+  {currentPath === '/ai-telephonic' && <AiTelephonic />}
+  {currentPath === '/ai-video' && <AiVideo />}
+  {currentPath === '/expert-video' && <ExpertVideo />}
+  {currentPath === '/courses' && <CoursesContent />}
+  {currentPath === '/notifications' && <NotificationsContent />}
+  {currentPath === '/profile' && <ProfileContent />}
+  {currentPath === '/settings' && <SettingsContent />}
+  {currentPath === '/help' && <HelpContent />}
+  {currentPath === '/voice-assistant' && <VoiceInteraction />}
+</div>
       </div>
     </div>
   );
